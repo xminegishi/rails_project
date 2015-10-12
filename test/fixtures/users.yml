@@ -2,6 +2,7 @@ tomonori:
   name: Tomonori Minegishi
   email: t@example.com
   password_digest: <%= User.digest('password') %>
+  admin: true
 
 haruto:
   name: Haruto Minegishi

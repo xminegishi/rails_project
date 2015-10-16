@@ -26,3 +26,23 @@ micropost_<%= n %>:
   created_at: <%= 42.days.ago %>
   user: tomonori
 <% end %>
+
+ants:
+  content: "its ants"
+  created_at: <%= 2.minutes.ago %>
+  user: haruto
+
+zone:
+  content: "its zone"
+  created_at: <%= 5.days.ago %>
+  user: haruto
+
+tone:
+  content: "its tone"
+  created_at: <%= 10.minutes.ago %>
+  user: tatsuya
+
+van:
+  content: "its van"
+  created_at: <%= 4.hours.ago %>
+  user: tatsuya

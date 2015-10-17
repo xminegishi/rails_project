@@ -9,8 +9,8 @@ class Micropost < ActiveRecord::Base
   private
     # validate upload picture size
     def picture_size
-      if picture.size > 5.megabytes
-        errors.add(:picture, "アップロードファイルの上限サイズは5MBです。")
+      if picture.size > 1.megabyte
+        errors.add(:picture, "の上限サイズは1MBです。")
       end
     end
 end

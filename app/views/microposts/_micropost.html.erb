@@ -1,5 +1,6 @@
 <li id="micropost-<%= micropost.id %>">
-  <%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
+  <!--<%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>-->
+  <%= image_tag("snapshot.png", id: "snapshot", alt: "snapshot") %>
   <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
   <span class="content">
     <%= micropost.content %>

@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 User.create!( name: "Example User",
-              email: "user@railstutorial.org",
+              email: "user@example.jp",
               password: "foobar",
               password_confirmation: "foobar",
               admin: true,
@@ -15,8 +15,8 @@ User.create!( name: "Example User",
               activated_at: Time.zone.now )
 
 99.times do |n|
-  name = Faker::Name.name
-  email = "example-#{n+1}@railstutorial.org"
+  name = "example-#{n+1}"
+  email = "example-#{n+1}@example.jp"
   password = "password"
   User.create!( name: name,
                 email: email,
@@ -28,6 +28,6 @@ end
 
 users = User.order(:created_at).take(6)
 50.times do
-  content = Faker::Lorem.sentence(5)
+  content = "Detedted object!"
   users.each { |user| user.microposts.create!(content: content) }
 end

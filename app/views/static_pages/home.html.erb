@@ -1,11 +1,11 @@
 
 <div class="center">
-  <%= image_tag("OfficeLayout.png", alt: "sample image") %>
+  <%= image_tag("OfficeLayout.png", id: "backgroundPNG", alt: "sample image") %>
   <div id="heatmap-container-wrapper">
     <div id="heatmap-container">
-       
     </div>
   </div>
+  </img>
   <!--  <%= link_to "SIGN UP", signup_path, class: "btn btn-lg btn-primary" %> -->
 </div>
 
@@ -17,9 +17,11 @@
       <section class="user_info">
         <%= render 'shared/user_info' %>
       </section>
+      <!--
       <section class='micropost_form'>
         <%= render 'shared/micropost_form' %>
       </section>
+      -->
     </aside>
     <div class="col-md-8">
       <h3>Sensor Status</h3>
@@ -34,7 +36,7 @@
     var heatmap = h337.create({
       container: document.getElementById('heatmap-container'),
       maxOpacity: .4,
-      radius: 30,
+      radius: 40,
       blur: .90,
       // backgroundColor with alpha so you can see through it
       backgroundColor: 'rgba(255, 255, 255, 0.1)'
@@ -52,7 +54,7 @@
         y = e.touches[0].pageY;
       }
 
-      heatmap.addData({ x: x, y: y, value: 0.05 });
+      heatmap.addData({ x: x, y: y, value: 0.1 });
     };
 
     heatmapContainer.onclick = function(e) {

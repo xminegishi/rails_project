@@ -17,10 +17,10 @@ textarea {
 
 .center {
 	text-align: center;
-	margin: 30px 150px 70px 150px;
+	margin: 30px 150px 30px 150px;
 	height: 450px;
 	position: relative;
-	img {
+	#backgroundPNG {
 		width: 100%;
 		height: 100%;
 	}
@@ -241,7 +241,9 @@ input {
 		display: block;
 		margin-top: 5px;
 	}
-	.gravatar {
+	#snapshot {
+		width: 64px;
+		height: 64px;
 		float: left;
 		margin-right: 10px;
 		margin-top: 5px;

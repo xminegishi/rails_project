@@ -6,10 +6,10 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create!( name: "Example User",
-              email: "user@example.jp",
-              password: "foobar",
-              password_confirmation: "foobar",
+User.create!( name: "Tomonori Minegishi",
+              email: "t@example.jp",
+              password: "password",
+              password_confirmation: "password",
               admin: true,
               activated: true,
               activated_at: Time.zone.now )
@@ -28,6 +28,6 @@ end
 
 users = User.order(:created_at).take(6)
 50.times do
-  content = "Detedted object!"
+  content = "オブジェクトを検知しました。"
   users.each { |user| user.microposts.create!(content: content) }
 end

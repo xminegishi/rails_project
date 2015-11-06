@@ -24,7 +24,7 @@
       -->
     </aside>
     <div class="col-md-8">
-      <h3>Sensor Status</h3>
+      <h3>センサーステータス</h3>
       <%= render 'shared/feed' %>
     </div>
   </div>
@@ -35,11 +35,11 @@
     // create a heatmap instance
     var heatmap = h337.create({
       container: document.getElementById('heatmap-container'),
-      maxOpacity: .4,
-      radius: 40,
+      maxOpacity: 0.5,
+      radius: 50,
       blur: .90,
       // backgroundColor with alpha so you can see through it
-      backgroundColor: 'rgba(255, 255, 255, 0.1)'
+      backgroundColor: 'rgba(255, 255, 255, 0.0)'
     });
 
     var heatmapContainer = document.getElementById('heatmap-container-wrapper');
@@ -54,7 +54,7 @@
         y = e.touches[0].pageY;
       }
 
-      heatmap.addData({ x: x, y: y, value: 0.1 });
+      heatmap.addData({ x: x, y: y, value: 0.07 });
     };
 
     heatmapContainer.onclick = function(e) {

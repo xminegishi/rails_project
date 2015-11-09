@@ -5,7 +5,10 @@
 
 body {
 	padding-top: 60px;
-	font-family: "メイリオ", "Meiryo", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "MS P Gothic";
+	font-family: Helvetica, "メイリオ", "Meiryo", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "MS P Gothic";
+	.container-fluid {
+		width: 90%;
+	}
 }
 
 section {
@@ -18,8 +21,9 @@ textarea {
 
 .center {
 	text-align: center;
-	margin: 30px 150px 50px 150px;
-	height: 450px;
+	margin: 60px 0 60px 0;
+	width: 100%;
+	height: auto;
 	position: relative;
 	#backgroundPNG {
 		width: 100%;
@@ -68,8 +72,8 @@ p {
 /* header */
 
 #logo {
-	float: left;
-	margin-right: 10px;
+	float: right;
+	margin-right: 100px;
 	font-size: 1.7em;
 	color: #fff;
 	letter-spacing: -1px;
@@ -132,7 +136,7 @@ aside {
 		margin-top: 20px;
 	}
 	section {
-		padding: 10px 0;
+		padding: 20px 0;
 		margin-top: 20px;
 		&:first-child {
 			border: 0;

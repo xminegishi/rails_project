@@ -15,4 +15,5 @@
 //= require bootstrap
 //= require turbolinks
 //= require heatmap
+//= require raphael-min
 //= require_tree .

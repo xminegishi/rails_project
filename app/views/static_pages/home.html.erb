@@ -1,7 +1,7 @@
 
 <div class="row">
   <% if logged_in? %>
-  <div class="col-md-3">
+  <div class="col-md-3" id="sensor-status">
     <aside class="row">
       <section class="user_info">
         <%= render 'shared/user_info' %>
@@ -17,21 +17,31 @@
       <%= render 'shared/feed' %>
     </div>
   </div>
-  <div class="col-md-7 col-md-offset-1">
-  <% else %>
-  <div class="col-md-8 col-md-offset-2">
-  <% end %>
-    <div class="center">
-    <%= image_tag("OfficeLayout.png", id: "backgroundPNG", alt: "sample image") %>
-      <div id="heatmap-container-wrapper">
-        <div id="heatmap-container">
+  <div class="col-md-9" id="floorview">
+    <div class="row">
+      <div class="col-md-9 col-md-offset-2">
+        <div class="center">
+        <%= image_tag("OfficeLayout.png", id: "backgroundPNG", alt: "sample image") %>
+          <div id="heatmap-container-wrapper">
+            <div id="heatmap-container"></div>
+          </div>
         </div>
       </div>
     </div>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-2" id="colorbar"></div>
+    </div>
   </div>
+  <% else %>
+  <div class="col-md-8 col-md-offset-2"></div>
+  <% end %>
 </div>
 
 <script>
+  Raphael(function () {
+    var cp = Raphael.colorbar(0, 0, 600, "#eee", "colorbar");
+  });
+
   window.onload = function() {
     // create a heatmap instance
     var heatmap = h337.create({
@@ -55,7 +65,7 @@
         y = e.touches[0].pageY;
       }
 
-      heatmap.addData({ x: x, y: y, value: 0.09 });
+      heatmap.addData({ x: x, y: y, value: 0.1 });
     };
 
     heatmapContainer.onclick = function(e) {

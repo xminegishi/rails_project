@@ -2,16 +2,16 @@
 <div class="row">
   <% if logged_in? %>
   <div class="col-md-3" id="sensor-status">
+    <!--
     <aside class="row">
       <section class="user_info">
         <%= render 'shared/user_info' %>
       </section>
-      <!--
       <section class='micropost_form'>
         <%= render 'shared/micropost_form' %>
       </section>
-      -->
     </aside>
+    -->
     <div class="row">
       <h3>センサーステータス</h3>
       <%= render 'shared/feed' %>
@@ -19,17 +19,16 @@
   </div>
   <div class="col-md-9" id="floorview">
     <div class="row">
-      <div class="col-md-9 col-md-offset-2">
+      <div class="col-md-12">
         <div class="center">
-        <%= image_tag("OfficeLayout.png", id: "backgroundPNG", alt: "sample image") %>
+          <!--<%= image_tag("OfficeLayout.png", id: "backgroundPNG", alt: "sample image") %>-->
+          <img id="backgroundPNG" alt="office layout image">
           <div id="heatmap-container-wrapper">
             <div id="heatmap-container"></div>
           </div>
+          <div id="colorwheel"></div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6 col-md-offset-2" id="colorbar"></div>
     </div>
   </div>
   <% else %>
@@ -38,8 +37,19 @@
 </div>
 
 <script>
+
   Raphael(function () {
-    var cp = Raphael.colorbar(0, 0, 600, "#eee", "colorbar");
+    var size = 150;
+    var vcontainer = document.getElementById("view-container");
+    var fview = document.getElementById("floorview");
+    var cwheel = document.getElementById("colorwheel");
+    
+    var offsetLeft = vcontainer.offsetLeft + fview.offsetLeft + cwheel.offsetLeft;
+    var offsetTop = vcontainer.offsetTop + fview.offsetTop + cwheel.offsetTop;
+
+    console.log(offsetLeft - size, offsetTop - size);
+
+    var cp = Raphael.colorwheel(offsetLeft - size, offsetTop - size, size, "#eee", "colorwheel");
   });
 
   window.onload = function() {
@@ -47,7 +57,7 @@
     var heatmap = h337.create({
       container: document.getElementById('heatmap-container'),
       maxOpacity: 0.5,
-      radius: 60,
+      radius: 70,
       blur: .90,
       // backgroundColor with alpha so you can see through it
       backgroundColor: 'rgba(255, 255, 255, 0.0)'
@@ -65,13 +75,29 @@
         y = e.touches[0].pageY;
       }
 
-      heatmap.addData({ x: x, y: y, value: 0.1 });
+      heatmap.addData({ x: x, y: y, value: 0.12 });
     };
-
+/*
     heatmapContainer.onclick = function(e) {
       var x = e.layerX;
       var y = e.layerY;
       heatmap.addData({ x: x, y: y, value: 0.5 });
+    };
+*/
+    heatmapContainer.onclick = function(e) {
+      Raphael(function () {
+        var size = 150;
+        var vcontainer = document.getElementById("view-container");
+        var fview = document.getElementById("floorview");
+        var cwheel = document.getElementById("colorwheel");
+    
+        var offsetLeft = vcontainer.offsetLeft + fview.offsetLeft + cwheel.offsetLeft;
+        var offsetTop = vcontainer.offsetTop + fview.offsetTop + cwheel.offsetTop;
+
+        console.log(offsetLeft - size, offsetTop - size);
+
+        var cp = Raphael.colorwheel(offsetLeft - size, offsetTop - size, size, "#eee", "colorwheel");
+      });
     };
   };
 </script>

@@ -18,16 +18,15 @@
     </div>
   </div>
   <div class="col-md-9" id="floorview">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="center">
-          <!--<%= image_tag("OfficeLayout.png", id: "backgroundPNG", alt: "sample image") %>-->
-          <img id="backgroundPNG" alt="office layout image">
-          <div id="heatmap-container-wrapper">
-            <div id="heatmap-container"></div>
-          </div>
-          <div id="colorwheel"></div>
-        </div>
+    <div class="center" id="background">
+      <!--<%= image_tag("OfficeLayout.png", id: "backgroundPNG", alt: "sample image") %>-->
+      <img id="layoutPNG" alt="office layout image">
+      <div id="heatmap-container-wrapper">
+        <div id="heatmap-container"></div>
+      </div>
+      <div id="colorwheel">
+        <input type="number" id="tempvalue" value="" step="0.1">
+        <p>℃</p>
       </div>
     </div>
   </div>
@@ -39,17 +38,24 @@
 <script>
 
   Raphael(function () {
-    var size = 150;
+    var size = 180;
     var vcontainer = document.getElementById("view-container");
     var fview = document.getElementById("floorview");
+    var bground = document.getElementById("background");
     var cwheel = document.getElementById("colorwheel");
+    var tvalue = document.getElementById("tempvalue");
     
-    var offsetLeft = vcontainer.offsetLeft + fview.offsetLeft + cwheel.offsetLeft;
+    var offsetLeft = fview.offsetLeft + bground.offsetLeft + cwheel.offsetLeft;
     var offsetTop = vcontainer.offsetTop + fview.offsetTop + cwheel.offsetTop;
 
-    console.log(offsetLeft - size, offsetTop - size);
+    var cp = Raphael.colorwheel(offsetLeft - size, offsetTop - size, size, 0.35, "colorwheel");
+    cwheel.style.display = "none";
 
-    var cp = Raphael.colorwheel(offsetLeft - size, offsetTop - size, size, "#eee", "colorwheel");
+    cp.onchange = function (clr) {
+      var temperature = Math.round(clr * 10) / 10;
+      tvalue.value = temperature.toFixed(1);
+    };
+    cp.onchange(cp.color());
   });
 
   window.onload = function() {
@@ -57,7 +63,7 @@
     var heatmap = h337.create({
       container: document.getElementById('heatmap-container'),
       maxOpacity: 0.5,
-      radius: 70,
+      radius: 80,
       blur: .90,
       // backgroundColor with alpha so you can see through it
       backgroundColor: 'rgba(255, 255, 255, 0.0)'
@@ -75,30 +81,11 @@
         y = e.touches[0].pageY;
       }
 
-      heatmap.addData({ x: x, y: y, value: 0.12 });
+      heatmap.addData({ x: x, y: y, value: 0.08 });
     };
-/*
-    heatmapContainer.onclick = function(e) {
-      var x = e.layerX;
-      var y = e.layerY;
-      heatmap.addData({ x: x, y: y, value: 0.5 });
-    };
-*/
-    heatmapContainer.onclick = function(e) {
-      Raphael(function () {
-        var size = 150;
-        var vcontainer = document.getElementById("view-container");
-        var fview = document.getElementById("floorview");
-        var cwheel = document.getElementById("colorwheel");
-    
-        var offsetLeft = vcontainer.offsetLeft + fview.offsetLeft + cwheel.offsetLeft;
-        var offsetTop = vcontainer.offsetTop + fview.offsetTop + cwheel.offsetTop;
 
-        console.log(offsetLeft - size, offsetTop - size);
-
-        var cp = Raphael.colorwheel(offsetLeft - size, offsetTop - size, size, "#eee", "colorwheel");
-      });
+    heatmapContainer.onclick = function(e) {
+      $("#colorwheel").fadeToggle(300);
     };
   };
 </script>
-

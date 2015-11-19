@@ -28,6 +28,6 @@ end
 
 users = User.order(:created_at).take(6)
 50.times do
-  content = "オブジェクトを検知しました。"
+  content = "オブジェクトを検出しました。"
   users.each { |user| user.microposts.create!(content: content) }
 end
